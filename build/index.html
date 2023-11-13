@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Cart</title>
+  <style>
+    /* Your CSS styles (you can include your CSS here for simplicity) */
+  </style>
+</head>
+<body>
+  <h1>My Cart</h1>
+  <div class="card">
+    <button onclick="addToCart(1)">Add to Cart</button>
+    <!-- This is a placeholder to display the cart items and total quantity -->
+    <div id="cartItems"></div>
+    <div id="totalQuantity"></div>
+  </div>
+
+  <script>
+    const cartItems = [];
+
+    function addToCart(itemId) {
+      const cartItemIndex = cartItems.findIndex((item) => item.id === itemId);
+
+      if (cartItemIndex === -1) {
+        cartItems.push({
+          id: itemId,
+          quantity: 1,
+        });
+      } else {
+        cartItems[cartItemIndex].quantity++;
+      }
+
+      alert("Item added to cart");
+
+      const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+      // Display cart items and total quantity in HTML
+      document.getElementById("cartItems").innerHTML = `Cart items: ${JSON.stringify(cartItems)}`;
+      document.getElementById("totalQuantity").innerHTML = `Total quantity: ${totalQuantity}`;
+    }
+  </script>
+</body>
+</html>
